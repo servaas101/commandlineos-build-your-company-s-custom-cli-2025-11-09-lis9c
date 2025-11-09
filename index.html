@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CommandlineOS — Build Your Company's Custom CLI. Create, customize, and command your own CLI with our powerful SDK and API.">
+    <meta name="keywords" content="CLI, Command Line, Custom CLI, Development Tools, SDK, API">
+    <meta name="author" content="CommandlineOS">
+    <title>CommandlineOS — Build Your Company's Custom CLI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        body {
+            background-color: #ffffff;
+            color: #000000;
+        }
+        
+        .dark-bg {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        
+        .gradient-btn {
+            background: linear-gradient(to right, #000000, #4A90E2);
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .gradient-btn:hover {
+            filter: brightness(1.1);
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(74, 144, 226, 0.3);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .card-hover:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .faq-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .faq-answer {
+            transition: all 0.3s ease-in-out;
+            max-height: 500px;
+        }
+        
+        .faq-answer.hidden {
+            max-height: 0;
+            overflow: hidden;
+        }
+        
+        .mobile-menu {
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+        }
+        
+        .accent-text {
+            color: #4A90E2;
+        }
+        
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #000000;
+        }
+        
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 1.875rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-black">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="flex items-center justify-between h-16 md:h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-black to-blue-600 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">CLI</span>
+                    </div>
+                    <span class="font-bold text-xl text-black hidden sm:inline">CommandlineOS</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-black hover:text-blue-600 transition-colors duration-200 font-light text-sm">Features</a>
+                    <a href="#benefits" class="text-black hover:text-blue-600 transition-colors duration-200 font-light text-sm">Benefits</a>
+                    <a href="#faq" class="text-black hover:text-blue-600 transition-colors duration-200 font-light text-sm">FAQ</a>
+                    <a href="#testimonials" class="text-black hover:text-blue-600 transition-colors duration-200 font-light text-sm">Testimonials</a>
+                    <a href="https://clidev.co" target="_blank" class="gradient-btn text-white px-6 py-2 rounded text-sm font-medium">Get Started</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden mobile-menu-button p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200" aria-label="Toggle menu">
+                    <i class="fas fa-bars text-black text-xl"></i>
+                </button>
+                
+                <!-- Mobile Menu -->
+                <div class="mobile-menu hidden absolute top-16 left-0 right-0 bg-white border-b border-gray-200 md:hidden">
+                    <div class="px-4 py-4 space-y-3">
+                        <a href="#features" class="block text-black hover:text-blue-600 transition-colors duration-200 font-light py-2">Features</a>
+                        <a href="#benefits" class="block text-black hover:text-blue-600 transition-colors duration-200 font-light py-2">Benefits</a>
+                        <a href="#faq" class="block text-black hover:text-blue-600 transition-colors duration-200 font-light py-2">FAQ</a>
+                        <a href="#testimonials" class="block text-black hover:text-blue-600 transition-colors duration-200 font-light py-2">Testimonials</a>
+                        <a href="https://clidev.co" target="_blank" class="gradient-btn text-white px-6 py-3 rounded text-sm font-medium block text-center w-full">Get Started</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient py-16 md:py-24 lg:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div class="space-y-8">
+                    <div class="space-y-4">
+                        <h1 class="section-title text-4xl md:text-5xl lg:text-6xl leading-tight">
+                            CommandlineOS — Build Your Company's Custom CLI
+                        </h1>
+                        <p class="text-lg md:text-xl text-gray-700 font-light leading-relaxed">
+                            Create. Customize. Command — Your CLI, Your Way.
+                        </p>
+                    </div>
+                    <p class="text-base md:text-lg text-gray-600 font-light leading-relaxed max-w-xl">
+                        Empower your development team with a fully customizable command-line interface tailored to your company's unique workflows. No coding expertise required — our intuitive platform handles the complexity so you can focus on innovation.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                        <a href="https://clidev.co" target="_blank" class="gradient-btn text-white px-8 py-4 rounded text-base font-semibold text-center">
+                            Start Building Now
+                        </a>
+                        <a href="#features" class="border-2 border-black text-black px-8 py-4 rounded text-base font-semibold text-center hover:bg-black hover:text-white transition-all duration-300">
+                            Explore Features
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden lg:block">
+                    <div class="bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg p-8 shadow-lg">
+                        <div class="space-y-4">
+                            <div class="bg-white rounded p-4 shadow-sm">
+                                <code class="text-sm text-gray-800">$ cli --init my-project</code>
+                            </div>
+                            <div class="bg-white rounded p-4 shadow-sm">
+                                <code class="text-sm text-gray-800">$ cli configure --team</code>
+                            </div>
+                            <div class="bg-white rounded p-4 shadow-sm">
+                                <code class="text-sm text-gray-800">$ cli deploy --production</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="section-title text-3xl md:text-4xl lg:text-5xl mb-4">
+                    Powerful Features Built for Your Team
+                </h2>
+                <p class="text-lg text-gray-600 font-light max-w-2xl mx-auto">
+                    Everything you need to create, deploy, and manage custom command-line interfaces at scale.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1: Custom CLIs -->
+                <div class="card-hover bg-white border border-gray-200 rounded-lg p-8 shadow-md">
+                    <div class="mb-6">
+                        <div class="inline-flex items-center justify-center w-14 h-14 bg-blue-50 rounded-lg">
+                            <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 3.75H6.912a2.25 2.25 0 00-2.15 1.558L2.5 13.5m20 0l-3.262-6.192A2.25 2.25 0 0017.088 4.5H14.25m-13.5 6h13.5m-13.5 0L3 16.5m0 0h21m-21 0v4.5A2.25 2.25 0 005.25 23h13.5A2.25 2.25 0 0021 21.75v-4.5" />
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-black mb-3">Custom CLIs</h3>
+                    <p class="text-gray-600 font-light leading-relaxed mb-4">
+                        Build branded command-line interfaces that reflect your company's identity and operational needs. Create fully customized CLI tools without writing a single line of code.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-start space-x-2">
+                            <svg class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span class="text-sm text-gray-600 font-light">Zero-code CLI builder</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <svg class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span class="text-sm text-gray-600 font-light">Drag-and-drop interface</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <svg class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span class="text-sm text-gray-600 font-light">Real-time deployment</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Feature 2: Easy SDK & API -->
+                <div class="card-hover bg-white border border-gray-200 rounded-lg p-8 shadow-md">
+                    <div class="mb-6">
+                        <div class="inline-flex items-center justify-center w-14 h-14 bg-blue-50 rounded-lg">
+                            <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 6.087c0-.355.186-.676.461-.841A6.52 6.52 0 0021 4.5c.88 0 1.722.104 2.541.306m-9.272 9.068A6.52 6.52 0 0021 19.5c-.88 0-1.722-.104-2.541-.306m0 0A6.505 6.505 0 0117.25 20.25c-5.668 0-10.5-4.477-10.5-10S6.582 3.75 12.25 3.75c5.668 0 10.5 4.477 10.5 10m-15.5 0H3.75m0 0A6.52 6.52 0 013 10.5" />
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-black mb-3">Easy SDK & API</h3>
+                    <p class="text-gray-600 font-light leading-relaxed mb-4">
+                        Integrate seamlessly with your existing infrastructure using our comprehensive SDK and REST API. Complete documentation and code examples make implementation effortless.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-start space-x-2">
+                            <svg class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span class="text-sm text-gray-600 font-light">Multi-language support (Python, Node, Go, Ruby)</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <svg class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span class="text-sm text-gray-600 font-light">Comprehensive API documentation</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <svg class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span class="text-sm text-gray-600 font-light">Webhook support for automation</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Feature 3: Team Management -->
+                <div class="card-hover bg-white border border-gray-200 rounded-lg p-8 shadow-md">
+                    <div class="mb-6">
+                        <div class="inline-flex items-center justify-center w-14 h-14 bg-blue-50 rounded-lg">
+                            <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72v-3.5m0 0a6 6 0 00-3.666-5.464m3.666 5.464v3.5m0 0v1.5a1.5 1.5 0 01-1.5 1.5h-16.5A1.5 1.5 0 012 17.5v-1.5m19.5 0a6 6 0 00-3.666-5.464m0 0a6 6 0 00-9.336 0m3.666 5.464v3.5m0 0v1.5a1.5 1.5 0 01-1.5 1.5H3.5A1.5 1.5 0 012 17.5v-1.5m19.5 0A1.5 1.5 0 0023 16.5v-1.5" />
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-black mb-3">Team Management</h3>
+                    <p class="text-gray-600 font-light leading-relaxed mb-4">
+                        Collaborate effortlessly with role-based access control, team workspaces, and comprehensive audit logs. Manage permissions at scale with enterprise-grade security.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-start space-x-2">
+                            <svg class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span class="text-sm text-gray-600 font-light">Role-based access control (RBAC)</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <svg class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span class="text-sm text-gray-600 font-light">Team workspaces and collaboration</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <svg class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span class="text-sm text-gray-600 font-light">Advanced audit logs and activity tracking</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="py-16 md:py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="section-title text-3xl md:text-4xl lg:text-5xl mb-4">
+                    Transform Your Development Workflow
+                </h2>
+                <p class="text-lg text-gray-600 font-light max-w-2xl mx-auto">
+                    Experience the benefits of streamlined operations and enhanced team productivity.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Benefit 1: Productivity -->
+                <div class="card-hover bg-white rounded-lg p-8 shadow-md border border-gray-100">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600">
+                                <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-black mb-2">Boost Productivity</h3>
+                            <p class="text-gray-600 font-light leading-relaxed">
+                                Automate repetitive tasks and eliminate manual processes. Teams report 40% faster task completion and 50% reduction in operational overhead.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benefit 2: Centralized Tools -->
+                <div class="card-hover bg-white rounded-lg p-8 shadow-md border border-gray-100">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600">
+                                <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-black mb-2">Centralized Tools</h3>
+                            <p class="text-gray-600 font-light leading-relaxed">
+                                Consolidate all your development tools into one unified platform. Reduce tool sprawl, improve consistency, and simplify team onboarding.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benefit 3: Automate Workflows -->
+                <div class="card-hover bg-white rounded-lg p-8 shadow-md border border-gray-100">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600">
+                                <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-black mb-2">Automate Workflows</h3>
+                            <p class="text-gray-600 font-light leading-relaxed">
+                                Create sophisticated automation pipelines without writing code. Trigger actions, chain operations, and orchestrate complex processes effortlessly.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Benefits Grid -->
+            <div class="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card-hover bg-white rounded-lg p-8 shadow-md border border-gray-100">
+                    <div class="flex items-start space-x-4">
+                        <svg class="h-8 w-8 text-blue-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <div>
+                            <h3 class="text-lg font-bold text-black mb-2">Cost Reduction</h3>
+                            <p class="text-gray-600 font-light leading-relaxed">
+                                Eliminate expensive third-party tool subscriptions and consolidate your toolchain. Organizations save an average of $50K annually.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-hover bg-white rounded-lg p-8 shadow-md border border-gray-100">
+                    <div class="flex items-start space-x-4">
+                        <svg class="h-8 w-8 text-blue-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m7 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <div>
+                            <h3 class="text-lg font-bold text-black mb-2">Enterprise Security</h3>
+                            <p class="text-gray-600 font-light leading-relaxed">
+                                Bank-level encryption, SOC 2 compliance, and comprehensive security audits. Your data is protected with industry-leading standards.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 md:py-24 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=600&fit=crop');">
+        <div class="absolute inset-0 bg-black opacity-60"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center space-y-6">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+                    Ready to Transform Your Development Workflow?
+                </h2>
+                <p class="text-lg md:text-xl text-gray-100 font-light max-w-2xl mx-auto">
+                    Join hundreds of companies building powerful CLI tools with CommandlineOS. Start your free trial today — no credit card required.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+                    <a href="https://clidev.co" target="_blank" class="gradient-btn text-white px-8 py-4 rounded text-base font-semibold text-center">
+                        Start Free Trial
+                    </a>
+                    <a href="mailto:servaas@clidev.co" class="border-2 border-white text-white px-8 py-4 rounded text-base font-semibold text-center hover:bg-white hover:text-black transition-all duration-300">
+                        Contact Sales
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="section-title text-3xl md:text-4xl lg:text-5xl mb-4">
+                    Loved by Development Teams Worldwide
+                </h2>
+                <p class="text-lg text-gray-600 font-light max-w-2xl mx-auto">
+                    See how leading companies are using CommandlineOS to accelerate their development processes.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Testimonial 1 -->
+                <div class="card-hover bg-white rounded-lg p-6 shadow-md border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="flex space-x-1">
+                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 font-light leading-relaxed mb-4">
+                        "CommandlineOS has completely transformed how our team manages deployments. What used to take hours now takes minutes. The intuitive interface means even junior developers can use it effectively."
+                    </p>
+                    <div>
+                        <p class="font-semibold text-black text-sm">Sarah Chen</p>
+                        <p class="text-gray-600 text-xs font-light">DevOps Lead, TechCorp</p>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="card-hover bg-white rounded-lg p-6 shadow-md border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="flex space-x-1">
+                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 font-light leading-relaxed mb-4">
+                        "The API documentation is outstanding, and the support team is incredibly responsive. We integrated CommandlineOS into our infrastructure in just two days. Best decision we made this quarter."
+                    </p>
+                    <div>
+                        <p class="font-semibold text-black text-sm">Marcus Rodriguez</p>
+                        <p class="text-gray-600 text-xs font-light">Engineering Manager, StartupXYZ</p>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="card-hover bg-white rounded-lg p-6 shadow-md border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="flex space-x-1">
+                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 font-light leading-relaxed mb-4">
+                        "We reduced our tool costs by $60K annually and cut deployment time from 45 minutes to 5 minutes. The ROI was immediate, and the team loves the simplicity."
+                    </p>
+                    <div>
+                        <p class="font-semibold text-black text-sm">Emily Watson</p>
+                        <p class="text-gray-600 text-xs font-light">CTO, Enterprise Solutions Inc</p>
+                    </div>
+                </div>
+
+                <!-- Testimonial 4 -->
+                <div class="card-hover bg-white rounded-lg p-6 shadow-md border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="flex space-x-1">
+                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 font-light leading-relaxed mb-4">
+                        "The team onboarding process is now seamless. New developers are productive on day one. The role-based access control gives us the security we need without sacrificing usability."
+                    </p>
+                    <div>
+                        <p class="font-semibold text-black text-sm">James Park</p>
+                        <p class="text-gray-600 text-xs font-light">VP of Engineering, Global Tech</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="py-16 md:py-24 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="section-title text-3xl md:text-4xl lg:text-5xl mb-4">
+                    About CommandlineOS
+                </h2>
+            </div>
+
+            <div class="space-y-6 text-gray-700 font-light leading-relaxed">
+                <p class="text-lg">
+                    CommandlineOS was founded in 2021 by a team of experienced DevOps engineers and software architects who recognized a critical gap in the development tools market. After spending years managing complex CLI deployments across multiple organizations, they realized that companies were spending enormous amounts of time and money building custom command-line interfaces from scratch. This insight sparked the creation of CommandlineOS — a platform designed to democratize CLI development and make powerful command-line tools accessible to teams of all sizes. What started as a solution for internal use quickly evolved into a comprehensive platform used by hundreds of companies worldwide.
+                </p>
+                <p class="text-lg">
+                    Today, CommandlineOS is committed to empowering development teams with tools that simplify complexity, reduce operational costs, and accelerate time-to-value. We believe that every company deserves access to enterprise-grade CLI infrastructure without the enterprise-grade price tag. Our mission is to make CLI development faster, easier, and more accessible than ever before. We're driven by our core values of innovation, simplicity, and customer success — and we're dedicated to continuously improving our platform based on the feedback and needs of our growing community of users.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-16 md:py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="section-title text-3xl md:text-4xl lg:text-5xl mb-4">
+                    Frequently Asked Questions
+                </h2>
+                <p class="text-lg text-gray-600 font-light">
+                    Everything you need to know about CommandlineOS.
+                </p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-question w-full px-6 py-4 text-left bg-white hover:bg-gray-50 transition-colors duration-200 flex items-center justify-between cursor-pointer">
+                        <span class="font-semibold text-black text-lg">What technical skills are required to use CommandlineOS?</span>
+                        <svg class="faq-icon w-6 h-6 text-gray-600 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 py-4 bg-gray-50 border-t border-gray-200">
+                        <p class="text-gray-700 font-light leading-relaxed">
+                            No technical skills are required! CommandlineOS is designed with a no-code approach, featuring an intuitive drag-and-drop interface that anyone can use. Whether you're a seasoned developer or a business analyst, you can create powerful CLI tools without writing any code. Our visual builder handles all the complexity behind the scenes, and our comprehensive documentation provides step-by-step guidance for more advanced features.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-question w-full px-6 py-4 text-left bg-white hover:bg-gray-50 transition-colors duration-200 flex items-center justify-between cursor-pointer">
+                        <span class="font-semibold text-black text-lg">How long does it take to deploy a custom CLI?</span>
+                        <svg class="faq-icon w-6 h-6 text-gray-600 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 py-4 bg-gray-50 border-t border-gray-200">
+                        <p class="text-gray-700 font-light leading-relaxed">
+                            Most custom CLIs can be deployed in minutes, not weeks. Our platform accelerates the entire development lifecycle from design to production. Simple CLIs can be deployed in under 5 minutes, while more complex configurations typically take 30-60 minutes. Our customers report an average time-to-deployment of 15 minutes compared to weeks with traditional development approaches. Plus, our one-click deployment process means you can iterate and update your CLI in real-time.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-question w-full px-6 py-4 text-left bg-white hover:bg-gray-50 transition-colors duration-200 flex items-center justify-between cursor-pointer">
+                        <span class="font-semibold text-black text-lg">Is CommandlineOS secure for enterprise use?</span>
+                        <svg class="faq-icon w-6 h-6 text-gray-600 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 py-4 bg-gray-50 border-t border-gray-200">
+                        <p class="text-gray-700 font-light leading-relaxed">
+                            Absolutely. Security is a top priority at CommandlineOS. We maintain SOC 2 Type II compliance, implement bank-level AES-256 encryption for all data in transit and at rest, and conduct regular third-party security audits. Our platform supports role-based access control (RBAC), single sign-on (SSO), two-factor authentication (2FA), and comprehensive audit logging. We also maintain detailed security documentation and work with enterprise security teams to ensure compliance with your organization's policies.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-question w-full px-6 py-4 text-left bg-white hover:bg-gray-50 transition-colors duration-200 flex items-center justify-between cursor-pointer">
+                        <span class="font-semibold text-black text-lg">Can we integrate CommandlineOS with our existing tools?</span>
+                        <svg class="faq-icon w-6 h-6 text-gray-600 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 py-4 bg-gray-50 border-t border-gray-200">
+                        <p class="text-gray-700 font-light leading-relaxed">
+                            Yes, absolutely! CommandlineOS provides a comprehensive REST API and SDKs for multiple programming languages (Python, Node.js, Go, Ruby, and more). You can easily integrate with your existing CI/CD pipelines, monitoring systems, cloud platforms, and third-party services. We also support webhooks for event-driven automation and offer pre-built integrations with popular tools like GitHub, GitLab, Slack, and more. Our integration documentation includes code examples for quick implementation.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-question w-full px-6 py-4 text-left bg-white hover:bg-gray-50 transition-colors duration-200 flex items-center justify-between cursor-pointer">
+                        <span class="font-semibold text-black text-lg">What kind of support and training does CommandlineOS provide?</span>
+                        <svg class="faq-icon w-6 h-6 text-gray-600 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 py-4 bg-gray-50 border-t border-gray-200">
+                        <p class="text-gray-700 font-light leading-relaxed">
+                            We provide comprehensive support through multiple channels including email, live chat, and a detailed knowledge base with video tutorials. All customers receive onboarding assistance, and enterprise customers have access to dedicated support engineers. We also offer personalized training sessions for your team, webinars on best practices, and a vibrant community forum where you can connect with other users and share solutions. Our support team typically responds to inquiries within 2 hours.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12 md:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- Column 1: Brand -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-10 h-10 bg-gradient-to-br from-white to-blue-400 rounded-lg flex items-center justify-center">
+                            <span class="text-black font-bold text-lg">CLI</span>
+                        </div>
+                        <span class="font-bold text-lg text-white">CommandlineOS</span>
+                    </div>
+                    <p class="text-gray-400 font-light text-sm leading-relaxed">
+                        Build your company's custom CLI with our powerful, intuitive platform.
+                    </p>
+                </div>
+
+                <!-- Column 2: Product -->
+                <div class="space-y-4">
+                    <h3 class="font-bold text-white text-sm uppercase tracking-wide">Product</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#features" class="text-gray-400 hover:text-white transition-colors duration-200 font-light text-sm">Features</a></li>
+                        <li><a href="#benefits" class="text-gray-400 hover:text-white transition-colors duration-200 font-light text-sm">Benefits</a></li>
+                        <li><a href="#faq" class="text-gray-400 hover:text-white transition-colors duration-200 font-light text-sm">FAQ</a></li>
+                        <li><a href="https://clidev.co" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-200 font-light text-sm">Pricing</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Company -->
+                <div class="space-y-4">
+                    <h3 class="font-bold text-white text-sm uppercase tracking-wide">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200 font-light text-sm">About Us</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-white transition-colors duration-200 font-light text-sm">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200 font-light text-sm">Careers</a></li>
+                        <li><a href="mailto:servaas@clidev.co" class="text-gray-400 hover:text-white transition-colors duration-200 font-light text-sm">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Legal -->
+                <div class="space-y-4">
+                    <h3 class="font-bold text-white text-sm uppercase tracking-wide">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-white transition-colors duration-200 font-light text-sm">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="text-gray-400 hover:text-white transition-colors duration-200 font-light text-sm">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200 font-light text-sm">Security</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200 font-light text-sm">Compliance</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+                    <p class="text-gray-400 font-light text-sm">
+                        &copy; 2025 CommandlineOS. All rights reserved.
+                    </p>
+                    <div class="flex items-center space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200" aria-label="Twitter">
+                            <i class="fab fa-twitter text-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200" aria-label="GitHub">
+                            <i class="fab fa-github text-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin text-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200" aria-label="Discord">
+                            <i class="fab fa-discord text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.querySelector('header nav .mobile-menu-button');
+            const mobileMenu = document.querySelector('header nav .mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    const icon = mobileMenuButton.querySelector('i');
+                    if (icon) {
+                        icon.classList.toggle('fa-bars');
+                        icon.classList.toggle('fa-times');
+                    }
+                });
+
+                const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+                mobileMenuLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                        const icon = mobileMenuButton.querySelector('i');
+                        if (icon) {
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                        }
+                    });
+                });
+            }
+
+            // FAQ Accordion Toggle
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                if (question) {
+                    question.addEventListener('click', () => {
+                        const answer = item.querySelector('.faq-answer');
+                        const isOpen = !answer.classList.contains('hidden');
+                        
+                        // Close all other FAQ items
+                        faqItems.forEach(otherItem => {
+                            if (otherItem !== item) {
+                                otherItem.querySelector('.faq-answer')?.classList.add('hidden');
+                                otherItem.querySelector('.faq-icon')?.classList.remove('rotate-180');
+                            }
+                        });
+                        
+                        // Toggle current item
+                        answer?.classList.toggle('hidden');
+                        item.querySelector('.faq-icon')?.classList.toggle('rotate-180');
+                    });
+                }
+            });
+
+            // Smooth Scroll for Anchor Links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href !== '#' && href.length > 1) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
